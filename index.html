@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events Management App</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <div class="app">
@@ -17,22 +18,22 @@
 
             <nav class="sidebar__nav">
                 <!-- Screen buttons (students will add JS to handle click + switch screens) -->
-                <button class="sidebar__btn is-active" data-screen="stats">
+                <button onclick="btn1(event)"  class="sidebar__btn is-active" data-screen="stats">
                     <span class="sidebar__icon">📊</span>
                     <span class="sidebar__label">Statistics</span>
                 </button>
 
-                <button class="sidebar__btn" data-screen="add">
+                <button onclick="btn1(event)" class="sidebar__btn" data-screen="add">
                     <span class="sidebar__icon">➕</span>
                     <span class="sidebar__label">Add Event</span>
                 </button>
 
-                <button class="sidebar__btn" data-screen="list">
-                    <span class="sidebar__icon">📋</span>
+                <button onclick="btn1(event)" class="sidebar__btn" data-screen="list">
+                  <span class="sidebar__icon">➕</span>
                     <span class="sidebar__label">Events</span>
                 </button>
 
-                <button class="sidebar__btn" data-screen="archive">
+                <button onclick="btn1(event)" class="sidebar__btn" data-screen="archive">
                     <span class="sidebar__icon">🗄️</span>
                     <span class="sidebar__label">Archive</span>
                 </button>
@@ -107,7 +108,7 @@
                             <div class="form__group">
                                 <label class="form__label" for="event-image">Image URL</label>
                                 <input 
-                                    type="url" 
+                                    type="text"
                                     id="event-image" 
                                     class="input" 
                                     placeholder="https://example.com/image.jpg"
@@ -161,8 +162,8 @@
                                 
                                 <!-- Variant rows will be appended here by JS -->
                                 <div id="variants-list" class="variants__list">
-                                    <!-- EXAMPLE: Students should clone this structure -->
-                                    <!-- 
+                                     EXAMPLE: Students should clone this structure
+                                     
                                     <div class="variant-row">
                                         <input type="text" class="input variant-row__name" placeholder="Variant name (e.g., 'Early Bird')" />
                                         <input type="number" class="input variant-row__qty" placeholder="Qty" min="1" />
@@ -173,7 +174,7 @@
                                         </select>
                                         <button type="button" class="btn btn--danger btn--small variant-row__remove">Remove</button>
                                     </div>
-                                    -->
+                                    
                                 </div>
                             </fieldset>
 
@@ -313,5 +314,10 @@
 
     const sampleArchive = [];
     -->
+
+
+
+    <script src="javascript.js"></script>
 </body>
 </html>
+
