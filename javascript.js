@@ -1,5 +1,3 @@
-
-
 let events = [];
 let archive = [];
 
@@ -56,17 +54,14 @@ function handleFormSubmit() {
       return;
 
     }
-
     if (!regexPrice.test(eventPrice)){
         alert("Prix incorrect")
         return;
     }
-
     if (!regexText.test(inputVariantRowName)) {
         alert("Nom du variant incorrect")
        return;
     }
-
     if (!regexNumbers.test(inputVariantRowQty)){
         alert("Quantité du variant incorrecte")
         return;
@@ -80,16 +75,64 @@ function handleFormSubmit() {
         alert("Type du variant incorrect")
        return;
     }
-
-
-
-
     events.push({
-        title,eventImg,
+        title,
+        eventImg,
+        eventDescription,
+        eventSeats: Number(eventSeats),
+        eventPrice : Number(eventPrice)
     })
-
+    let nmbrevent = document.getElementById("stat-total-events");
+    nmbrevent.innerHTML=events.length;
+    
+    const totalPrice = events.reduce((sum, e) => sum + e.eventPrice * e.eventSeats, 0);
+    let nmbplace = document.getElementById("stat-total-price");
+    nmbplace.innerHTML=`${totalPrice}`; 
+    
+    let totalSeats = events.reduce((sum, e) => sum + e.eventSeats, 0);
+    const totallSeats = document.getElementById("stat-total-seats");
+    totallSeats.innerHTML=`${totalSeats}`;
     form.reset();
   });
 }
-
 handleFormSubmit();
+function addVariantRow(){
+    
+    const btn2 = document.getElementById("btn-add-variant");
+    //btn plus
+    const variantslist = document.getElementById("variants-list");
+    //div fax radi nzido varient
+        const variantrow = document.getElementById("variant-row");
+        //element li brina ndiro lih nodeclone
+    btn2.addEventListener("click",()=>{
+        
+        const varian = variantrow.cloneNode(true);
+        variantslist.appendChild(varian);
+        varian.removeAttribute("id");
+        // varian.reset();id="input variant-row"
+        const idinput = document.querySelectorAll(".variant-row");
+        const btnremouve = varian.querySelector(".variant-row__remove");
+            //daba xi div tzad f varion kanmxi kan9lab 3la btn li kayna fih (hadak li zad)  htito f btnremouve au galt liha add EventListener ila click => varian.remove() itmsah div kaml
+            idinput.forEach(input=>{
+                input.value = "";
+            })
+                btnremouve.addEventListener("click",()=> {
+                    varian.remove();
+             }) 
+
+    })
+}
+ addVariantRow();
+
+
+
+
+// variants-list=> hadi hiyasrira  || variants=>hadi hiya alkbira
+
+
+// function addVariantRow() {
+    // TODO:
+    // 1. Clone .variant-row template
+    // 2. Append to #variants-list
+    // 3. Add remove listener to new row's remove button
+// }

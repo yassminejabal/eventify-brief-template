@@ -56,7 +56,7 @@
 
             <!-- SCREENS (only one visible at a time) -->
             <div class="screens">
-                
+
                 <!-- SCREEN 1: Statistics (DEFAULT) -->
                 <section class="screen is-visible" data-screen="stats">
                     <div class="screen__content">
@@ -64,7 +64,7 @@
                         <div class="stats-grid">
                             <article class="stat-card">
                                 <p class="stat-card__label">Total Events</p>
-                                <p class="stat-card__value" id="stat-total-events">0</p>
+                                <p class="stat-card__value"  id="stat-total-events">0</p>
                             </article>
 
                             <article class="stat-card">
@@ -154,25 +154,25 @@
                             </div>
 
                             <!-- VARIANTS SECTION -->
-                            <fieldset class="variants">
+                            <fieldset class="variants" id="variants">
                                 <legend class="variants__title">
                                     Pricing Variants (Optional)
-                                    <button type="button" class="btn btn--small" id="btn-add-variant">+ Add Variant</button>
+                                    <button type="button" class="btn btn--small" id="btn-add-variant" >+ Add Variant</button>
                                 </legend>
                                 
                                 <!-- Variant rows will be appended here by JS -->
                                 <div id="variants-list" class="variants__list">
                                      EXAMPLE: Students should clone this structure
                                      
-                                    <div class="variant-row">
-                                        <input type="text" class="input variant-row__name" placeholder="Variant name (e.g., 'Early Bird')" />
-                                        <input type="number" class="input variant-row__qty" placeholder="Qty" min="1" />
-                                        <input type="number" class="input variant-row__value" placeholder="Value" step="0.01" />
-                                        <select class="select variant-row__type">
+                                    <div class="variant-row" id="variant-row">
+                                        <input type="text" class="input variant-row__name" id="input variant-row" placeholder="Variant name (e.g., 'Early Bird')" />
+                                        <input type="number" class="input variant-row__qty" id="input variant-row" placeholder="Qty" min="1" />
+                                        <input type="number" class="input variant-row__value" id="input variant-row" placeholder="Value" step="0.01" />
+                                        <select class="select variant-row__type" id="input variant-row">
                                             <option value="fixed">Fixed Price</option>
                                             <option value="percentage">Percentage Off</option>
                                         </select>
-                                        <button type="button" class="btn btn--danger btn--small variant-row__remove">Remove</button>
+                                        <button type="button" id="btn btn--danger btn--small variant-row__remove" class="btn btn--danger btn--small variant-row__remove">Remove</button>
                                     </div>
                                     
                                 </div>
