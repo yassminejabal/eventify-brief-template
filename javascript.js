@@ -86,11 +86,11 @@ function handleFormSubmit() {
     nmbrevent.innerHTML=events.length;
     
     const totalPrice = events.reduce((sum, e) => sum + e.eventPrice * e.eventSeats, 0);
-    let nmbplace = document.getElementById("stat-total-price");
-    nmbplace.innerHTML=`${totalPrice}`; 
-    
+    let nmbplace = document.getElementById("stat-total-price").textContent="$"+ totalPrice.toFixed(2);
+    nmbplace.innerHTML=`${totalPrice}`;
+
     let totalSeats = events.reduce((sum, e) => sum + e.eventSeats, 0);
-    const totallSeats = document.getElementById("stat-total-seats");
+    const totallSeats = document.getElementById("stat-total-seats").textContent = totalSeats;
     totallSeats.innerHTML=`${totalSeats}`;
     form.reset();
   });
@@ -121,18 +121,12 @@ function addVariantRow(){
              }) 
 
     })
+    // variants-list=> hadi hiyasrira  || variants=>hadi hiya alkbira
 }
  addVariantRow();
+ // Save/load from localStorage
+function loadData() {
 
-
-
-
-// variants-list=> hadi hiyasrira  || variants=>hadi hiya alkbira
-
-
-// function addVariantRow() {
-    // TODO:
-    // 1. Clone .variant-row template
-    // 2. Append to #variants-list
-    // 3. Add remove listener to new row's remove button
-// }
+    // TODO: Load events and archive from localStorage
+    // JSON.parse(localStorage.getItem('events'))
+}
