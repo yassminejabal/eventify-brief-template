@@ -26,7 +26,7 @@ let events = [
 
 ];
 let varientt = [];
-let conteur = 0;
+
 let archive = [];
 
 let form = document.getElementById("event-form");
@@ -50,7 +50,7 @@ function handleFormSubmit() {
   let regexVariantType = /^[A-Za-z0-9\s]+$/;
   let regexURL = /^https?:\/\/.+\..+/;
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) =>{
     e.preventDefault();
     let title = document.getElementById("event-title").value.trim();
     let eventImg = document.getElementById("event-image").value.trim();
@@ -103,14 +103,22 @@ function handleFormSubmit() {
     }
       
     events.push({
-      
-      id : conteur + 1,
       title,
       eventImg,
       eventDescription,
       eventSeats: Number(eventSeats),
       eventPrice: Number(eventPrice)
+
     })
+    let conteur = 0;
+    events.forEach((event)=>{
+      event.id = conteur++;
+    });
+
+    // events[0].id+=conteur;
+    //     conteur++;
+
+    console.log(conteur);
     let nmbrevent = document.getElementById("stat-total-events");
     nmbrevent.innerHTML = events.length;
     const totalPrice = events.reduce((sum, e) => sum + e.eventPrice * e.eventSeats, 0);
@@ -136,20 +144,22 @@ function addVariantRow(varrryon) {
   console.log(inputvariantrowvalue);
   const selectvariantrowtype = document.querySelector(".variant-row__type").value.trim();
   console.log(selectvariantrowtype);
-  // let valuevarian = {
-  //   id: count,
-  //   name: inputvariantrowname,
-  //   qty: inputvariantrowqty,
-  //   value: inputvariantrowvalue,
-  //   type: selectvariantrowtype,
-  // }
-  // count++;
+  let valuevarian = {
+    id: count,
+    name: inputvariantrowname,
+    qty: inputvariantrowqty,
+    value: inputvariantrowvalue,
+    type: selectvariantrowtype,
+  }
+  count++;
+  varientt.push(valuevarian);
+  
   // varrryon.varientt.push(valuevarian);
-  //event.variant = [...event.variant,{ }]
+  // event.variant = [...event.variant,{ }]
   // TODO: event.variants.push(valuevarian);
 
   // events.push(varientt);
-  console.log(events);
+  // console.log(events);
   const btn2 = document.getElementById("btn-add-variant");
   //btn plus
   const variantslist = document.getElementById("variants-list");
@@ -195,12 +205,21 @@ function affichage() {
                                     <td>$${ev.eventPrice}</td>
                                     <td><span class="badge">3</span></td>
                                     <td>
-                                        <button class="btn btn--small" data-action="details" data-event-id="1">Details</button>
-                                        <button class="btn btn--small" data-action="edit" data-event-id="1">Edit</button>
-                                        <button class="btn btn--danger btn--small" data-action="archive" data-event-id="1">Delete</button>
+                                        <button class="btn btn--small" data-action="details" id="Details">Details</button>
+                                        <button class="btn btn--small" data-action="edit" id="Edit">Edit</button>
+                                        <button class="btn btn--danger btn--small" data-action="archive" id="Delete">Delete</button>
                                     </td>
                                 </tr>`
 
+  })
+}
+function Deletee(){
+  const tbody = document.querySelector(".table__body");
+  const butn = document.getElementById("Delete");
+  butn.addEventListener("click",()=>{
+    
+
+    
 
   })
 }
@@ -240,3 +259,16 @@ function affichage() {
 // TODO: Load events and archive from localStorage
 // JSON.parse(localStorage.getItem('events'))
 // }
+
+
+
+    // for(element of events ){
+    //   if(element = btnclick.id){
+    //     const btnclick = butn.currentTarget.id;
+    //     btnclick.remove();
+    //     archive.push(btnclick);
+    //     tbody.innerHTML+=btnclick.outerHTML;
+        
+    //   }
+
+    // }
