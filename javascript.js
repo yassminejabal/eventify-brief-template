@@ -25,9 +25,8 @@ let events = [
 
 
 ];
-let varientt = [];
-
 let archive = [];
+let variants =[];
 
 let form = document.getElementById("event-form");
 function btn1(event) {
@@ -107,18 +106,16 @@ function handleFormSubmit() {
       eventImg,
       eventDescription,
       eventSeats: Number(eventSeats),
-      eventPrice: Number(eventPrice)
-
+      eventPrice: Number(eventPrice),
+      variants
     })
-    let conteur = 0;
+      variants= [];
+    let conteur = 1;
     events.forEach((event)=>{
       event.id = conteur++;
     });
 
-    // events[0].id+=conteur;
-    //     conteur++;
 
-    console.log(conteur);
     let nmbrevent = document.getElementById("stat-total-events");
     nmbrevent.innerHTML = events.length;
     const totalPrice = events.reduce((sum, e) => sum + e.eventPrice * e.eventSeats, 0);
@@ -133,47 +130,53 @@ function handleFormSubmit() {
     form.reset();
   });
 }
+
 handleFormSubmit();
 let count = 1;
-function addVariantRow(varrryon) {
-  let inputvariantrowname = document.querySelector(".variant-row__name").value.trim();
-  console.log(inputvariantrowname);
-  const inputvariantrowqty = document.querySelector(".variant-row__qty").value.trim();
-  console.log(inputvariantrowqty);
-  const inputvariantrowvalue = document.querySelector(".variant-row__value").value.trim();
-  console.log(inputvariantrowvalue);
-  const selectvariantrowtype = document.querySelector(".variant-row__type").value.trim();
-  console.log(selectvariantrowtype);
-  let valuevarian = {
-    id: count,
-    name: inputvariantrowname,
-    qty: inputvariantrowqty,
-    value: inputvariantrowvalue,
-    type: selectvariantrowtype,
-  }
-  count++;
-  varientt.push(valuevarian);
-  
-  // varrryon.varientt.push(valuevarian);
-  // event.variant = [...event.variant,{ }]
-  // TODO: event.variants.push(valuevarian);
+function addVariantRow(){
+  const inputvariantrowname = document.querySelector(".input.variant-row__name").value.trim();
 
-  // events.push(varientt);
-  // console.log(events);
+  const inputvariantrowqty = document.querySelector("input.variant-row__qty").value.trim();
+
+  const inputvariantrowvalue = document.querySelector(".variant-row__value").value.trim();
+
+  const selectvariantrowtype = document.querySelector(".variant-row__type").value.trim();
+
+  let valuevarian = {
+    id : count,
+    name : inputvariantrowname,
+    qty : inputvariantrowqty,
+    value: inputvariantrowvalue,
+    type: selectvariantrowtype
+  }
+
+  
+  variants.push(valuevarian);
+  count++;
   const btn2 = document.getElementById("btn-add-variant");
   //btn plus
   const variantslist = document.getElementById("variants-list");
+
+  
   //div fax radi nzido varient
   const variantrow = document.getElementById("variant-row");
+
+  
   //element li brina ndiro lih nodeclone
-  btn2.addEventListener("click", () => {
-    const varian = variantrow.cloneNode(true);
-    variantslist.appendChild(varian);
+  
+    let id = +variantrow.dataset.varId;
+    let varian = variantrow.cloneNode(true);
+    varian.id = ++id
+    varian.dataset.varId= ++id 
+     variantslist.appendChild(varian);
+    console.log(varian);
+    
     varian.removeAttribute("id");
     // varian.reset();id="input variant-row"
     const idinput = document.querySelectorAll(".variant-row");
     const btnremouve = varian.querySelector(".variant-row__remove");
     //daba xi div tzad f varion kanmxi kan9lab 3la btn li kayna fih (hadak li zad)  htito f btnremouve au galt liha add EventListener ila click => varian.remove() itmsah div kaml
+
     idinput.forEach(input => {
       input.value = "";
 
@@ -182,9 +185,10 @@ function addVariantRow(varrryon) {
       varian.remove();
     })
 
-  })
+ 
   // variants-list=> hadi hiyasrira  || variants=>hadi hiya alkbira
 }
+// varian="";
 
 function ajouteEvenment() {
   let title = document.getElementById("event-title").value.trim();
@@ -203,48 +207,46 @@ function affichage() {
                                     <td>${ev.title}</td>
                                     <td>${ev.eventSeats}</td>
                                     <td>$${ev.eventPrice}</td>
-                                    <td><span class="badge">3</span></td>
+                                    <td><span class="badge">${ev.variants.length}</span></td>
                                     <td>
-                                        <button class="btn btn--small" data-action="details" id="Details">Details</button>
+                                      
+                                        <button class="btn btn--small" data-action="details" id="Details" onclick="details">Details</button>
                                         <button class="btn btn--small" data-action="edit" id="Edit">Edit</button>
-                                        <button class="btn btn--danger btn--small" data-action="archive" id="Delete">Delete</button>
+                                        <button class="btn btn--danger btn--small" data-action="archive" id="Delete" onclick="Deletee(this)">Delete</button>
                                     </td>
                                 </tr>`
 
   })
+
 }
-function Deletee(){
-  const tbody = document.querySelector(".table__body");
-  const butn = document.getElementById("Delete");
-  butn.addEventListener("click",()=>{
-    
+  
+function Deletee(eventt){
+    // const carde = eventt.closest(".table__row");
+    // events.splice(eventt,1);
+    // carde.remove();
+    events.forEach((evente)=>{
+      evente.addEventListener("click",()=>{
+        document.getElementById
+        const carde = eventt.closest(".table__row");
+        
 
-    
+      })
+    })
 
-  })
 }
+// function details(){
+//   const btnDetails = document.getElementById("Details");
+
+  
+
+// }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // let conteur = 1;
+    // events.forEach((event)=>{
+    //   event.id = conteur++;
+    // });
 
 
 
@@ -272,3 +274,32 @@ function Deletee(){
     //   }
 
     // }
+    //les
+    // const user = {id:1 ,name:"AZIZ" , role:["trainer"]};
+    // user.role
+    //reference type=>les array les objet / les primitive
+    //enttries => kat3ti key et value 3la xkal tableau kola key +value ce la forme array et ga3 dok les key et les value kay3tiwMjmou3in f tableau
+    //fromEntrie
+    //splace.()
+    //join    split    splace indixOf
+    // qb.reduce(function(x.,y){
+    //   return
+    // }
+
+
+
+
+
+
+
+
+
+
+
+      // varientt.push(valuevarian);
+  
+  // varrryon.varientt.push(valuevarian);
+  // event.variant = [...event.variant,{ }]
+  // // TODO: event.variants.push(valuevarian);
+
+  // events.push(varientt);

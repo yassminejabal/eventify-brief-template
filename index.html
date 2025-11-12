@@ -157,14 +157,14 @@
                             <fieldset class="variants" id="variants">
                                 <legend class="variants__title">
                                     Pricing Variants (Optional)
-                                    <button type="button" class="btn btn--small" id="btn-add-variant" >+ Add Variant</button>
+                                    <button type="button" onclick="addVariantRow()" class="btn btn--small" id="btn-add-variant" >+ Add Variant</button>
                                 </legend>
                                 
                                 <!-- Variant rows will be appended here by JS -->
                                 <div id="variants-list" class="variants__list">
-                                     EXAMPLE: Students should clone this structure
+                                      EXAMPLE: Students should clone this structure
                                      
-                                    <div class="variant-row" id="variant-row">
+                                    <div class="variant-row" id="variant-row" data-var-id="1" >
                                         <input type="text" class="input variant-row__name" id="input variant-row" placeholder="Variant name (e.g., 'Early Bird')" />
                                         <input type="number" class="input variant-row__qty" id="input variant-row" placeholder="Qty" min="1" />
                                         <input type="number" class="input variant-row__value" id="input variant-row" placeholder="Value" step="0.01" />
