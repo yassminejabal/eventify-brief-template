@@ -245,40 +245,40 @@
       `
   }
   
-//   function affichagearchife(){
+  function affichagearchife(){
 
-//     const tbody = document.querySelectorAll(".table__body")[1];
-//     tbody.innerHTML ="";
-//     archive.forEach((ev,index) =>{
-//       tbody.innerHTML += `                                           
-//                                     <tr class="table__row" data-event-id="">
-//                                       <td>${ev.id}</td>
-//                                       <td>${ev.title}</td>
-//                                       <td>${ev.eventSeats}</td>
-//                                       <td>$${ev.eventPrice}</td>
-//                                       <td><span class="badge">${ev.variants.length++}</span></td>
-//                                       <td>
-//                                         <button class="btn btn--danger btn--small" onclick="restore(event, ${ev.id})" data-action="" id="">Restore</button>
-//                                       </td>
-//                                   </tr>`
-//     })
-// }
-//       function restore(event, id){
-//       const carde = event.currentTarget.closest(".table__row");
-//       carde.remove();
-//       const found = archive.filter(ev => Number(ev.id) === Number(id))
-//       events.push(found[0]);
-//       archive = archive.filter(item => item.id != id);
-//       affichage();
-//   }
-//   function restore(event,id) {
-//            const carde = event.currentTarget.closest("table__row")
-//            carde.remove();
-//           archive.filter(evv=>Number(event.id) === Number(evv.id));
-
+    const tbody = document.querySelectorAll(".table__body")[1];
+    tbody.innerHTML ="";
+    archive.forEach((ev,index) =>{
+      tbody.innerHTML += `                                           
+                                    <tr class="table__row" data-event-id="">
+                                      <td>${ev.id}</td>
+                                      <td>${ev.title}</td>
+                                      <td>${ev.eventSeats}</td>
+                                      <td>$${ev.eventPrice}</td>
+                                      <td><span class="badge">${ev.variants.length++}</span></td>
+                                      <td>
+                                        <button class="btn btn--danger btn--small" onclick="restore(event, ${ev.id})" data-action="" id="">Restore</button>
+                                      </td>
+                                  </tr>`
+    })
+}
+  //     function restore(event, id){
+  //     const carde = event.currentTarget.closest(".table__row");
+  //     carde.remove();
+  //     const found = archive.filter(ev => Number(ev.id) === Number(id))
+  //     events.push(found[0]);
+  //     archive = archive.filter(item => item.id != id);
+  //     affichage();
+  // }
+  // function restore(event,id) {
+  //          const carde = event.currentTarget.closest("table__row")
+  //          carde.remove();
+  //         archive.filter(evv=>Number(event.id) === Number(evv.id));
+          
 
     
-//   }
+  // }
   // addVariantRow();
   // Save/load from localStorage
   // function loadData() {
