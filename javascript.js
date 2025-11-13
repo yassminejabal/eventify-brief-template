@@ -25,6 +25,7 @@
 
 
   ];
+  let counteur = 0 ;
   let archive = [];
   let variants =[];
 
@@ -38,6 +39,7 @@
     const allsection = document.getElementsByTagName("section");
     for (let element of allsection) {
       element.classList.remove("is-visible");
+      
     }
     document.querySelector(`section[data-screen=${sectionName}]`).classList.add("is-visible");
   }
@@ -100,20 +102,23 @@
         alert("Type du variant incorrect")
         return;
       }
-        
+        //ajouter dans arry events en ajoute des event sous l'afforme des objet
       events.push({
+        id:counteur++,
         title,
         eventImg,
         eventDescription,
         eventSeats: Number(eventSeats),
         eventPrice: Number(eventPrice),
+        //array de varain
         variants
       })
+        //kankhwiw Array
         variants= [];
-      let conteur = 1;
-      events.forEach((event)=>{
-        event.id = conteur++;
-      });
+      // let conteur = 1;
+      // events.forEach((event)=>{
+      //   event.id = conteur++;
+      // });
 
 
       let nmbrevent = document.getElementById("stat-total-events");
@@ -150,9 +155,8 @@
       type: selectvariantrowtype
     }
 
-    
-    variants.pus h(valuevarian);
-    console.log(variants);
+    //=>variants=>array.
+    variants.push(valuevarian);
     count++;
     const btn2 = document.getElementById("btn-add-variant");
     //btn plus
@@ -161,9 +165,8 @@
     //div fax radi nzido varient
     const variantrow = document.getElementById("variant-row");
 
-    
     //element li brina ndiro lih nodeclone
-    
+      //hna kanjib daid mn data set au b + kanhawlo mn sttring l number
       let id =+variantrow.dataset.varId;
       let varian = variantrow.cloneNode(true);
     
@@ -178,20 +181,18 @@
       const btnremouve = varian.querySelector(".variant-row__remove");
       //daba xi div tzad f varion kanmxi kan9lab 3la btn li kayna fih (hadak li zad)  htito f btnremouve au galt liha add EventListener ila click => varian.remove() itmsah div kaml
 
-      idinput.forEach(input => {
-        input.value = "";
+      // idinput.forEach(input => {
+      //   input.value = "";
 
-      })
+      // })
       btnremouve.addEventListener("click", () => {
         varian.remove();
       })
-
-  
     // variants-list=> hadi hiyasrira  || variants=>hadi hiya alkbira
   }
   // varian="";
 
-  function ajouteEvenment() {
+  function ajouteEvenment(){
     let title = document.getElementById("event-title").value.trim();
     const divPrincipal = document.createElement("div");
     divPrincipal.innerHTML = `${title},${eventDescription},${eventSeats},${eventPrice}`
@@ -203,31 +204,27 @@
     tbody.innerHTML ="";
     events.forEach((ev,index) => {
       tbody.innerHTML += `
-                                    <tr class="table__row" data-event-id="">
-                                      <td>${ev.id}</td>
-                                      <td>${ev.title}</td>
-                                      <td>${ev.eventSeats}</td>
-                                      <td>$${ev.eventPrice}</td>
-                                      <td><span class="badge">${ev.variants.length}</span></td>
-                                      <td>
-                                        
-                                          <button class="btn btn--small" data-action="details" id="Details" onclick="details(${index})">Details</button>
-                                          <button class="btn btn--small" data-action="edit" id="Edit">Edit</button>
-                                          <button class="btn btn--danger btn--small" data-action="archive" id="Delete" onclick="Deletee(this)">Delete</button>
-                                      </td>
-                                  </tr>`
+        <tr class="table__row" data-event-id="">
+          <td>${ev.id}</td>
+          <td>${ev.title}</td>
+          <td>${ev.eventSeats}</td>
+          <td>$${ev.eventPrice}</td>
+          <td><span class="badge">${ev.variants.length++}</span></td>
+          <td>
+              <button class="btn btn--small" data-action="details" id="Details" onclick="details(${index})">Details</button>
+              <button class="btn btn--small" data-action="edit" id="Edit">Edit</button>
+              <button class="btn btn--danger btn--small" data-action="archive" id=""  onclick="Deletee(event, this, ${ev.id})" >Delete</button>
+          </td>
+      </tr>`
 
     })
-
   }
-    
-  function Deletee(eventt){
-      const carde = eventt.closest(".table__row");
-      console.log(archive);
-      const deleteee = events.splice(eventt,1);
+  function Deletee(event,eventthis, id){
+      const carde = event.closest(".table__row");
+      const deleteee = events.splice(event,1);
       carde.remove();
-      archive.push(deleteee);
-      console.log(archive);       
+      archive.push(...deleteee);
+      affichagearchife();
   }
 
   const modalclos = document.querySelector("#event-modal");
@@ -246,42 +243,42 @@
       <p>${events[index].eventPrice}</p>
       <p>${events[index].variants.length}</p>
       `
-  
   }
+  
+//   function affichagearchife(){
 
-
-// const modal =document.getElementById("event-modal");
-// const closModal = document.querySelector(".modal__close");
-// closModal.addEventListener("click",()=>{
-//   modal.classList.add("is-hidden");
-// })
+//     const tbody = document.querySelectorAll(".table__body")[1];
+//     tbody.innerHTML ="";
+//     archive.forEach((ev,index) =>{
+//       tbody.innerHTML += `                                           
+//                                     <tr class="table__row" data-event-id="">
+//                                       <td>${ev.id}</td>
+//                                       <td>${ev.title}</td>
+//                                       <td>${ev.eventSeats}</td>
+//                                       <td>$${ev.eventPrice}</td>
+//                                       <td><span class="badge">${ev.variants.length++}</span></td>
+//                                       <td>
+//                                         <button class="btn btn--danger btn--small" onclick="restore(event, ${ev.id})" data-action="" id="">Restore</button>
+//                                       </td>
+//                                   </tr>`
+//     })
+// }
+//       function restore(event, id){
+//       const carde = event.currentTarget.closest(".table__row");
+//       carde.remove();
+//       const found = archive.filter(ev => Number(ev.id) === Number(id))
+//       events.push(found[0]);
+//       archive = archive.filter(item => item.id != id);
+//       affichage();
+//   }
+//   function restore(event,id) {
+//            const carde = event.currentTarget.closest("table__row")
+//            carde.remove();
+//           archive.filter(evv=>Number(event.id) === Number(evv.id));
 
 
     
-  // function details(index){
-    
-  //   modal.classList.remove("is-hidden");
-  //   const daitls = document.getElementById("modal-body");
-    
-    
-  //   daitls.innerHTML=`
-  //                   <p> id : ${events[index].id} </p>
-  //                   <p> title : ${events[index].title} </p> 
-  //                   <p>eventSeats : ${events[index].eventSeats} </p> 
-  //                   <p>eventPrice : ${events[index].eventPrice} </p> 
-  //                   <p>eventPrice : ${events[index].eventPrice} </p> 
-  //   `
-
-    
-
-  // }
-
-
-
-
-
-
-
+//   }
   // addVariantRow();
   // Save/load from localStorage
   // function loadData() {
@@ -290,16 +287,6 @@
   // JSON.parse(localStorage.getItem('events'))
   // }
 
-
-
-      // for(element of events ){
-      //   if(element = btnclick.id){
-      //     const btnclick = butn.currentTarget.id;
-      //     btnclick.remove();
-      //     archive.push(btnclick);
-      //     tbody.innerHTML+=btnclick.outerHTML;
-          
-      //   }
 
       // }
       //les
@@ -313,24 +300,19 @@
       // qb.reduce(function(x.,y){
       //   return
       // }
+  //        function restore(event, id){
+  //     const carde = event.currentTarget.closest(".table__row");
+  //     carde.remove();
+  //     const found = archive.filter(ev => Number(ev.id) === Number(id))
+  //     events.push(found[0]);
+  //     archive = archive.filter(item => item.id != id);
+  //     console.log(archive);
+      
+  //     affichage();
+  // }
 
 
 
-
-
-
-
-
-
-
-
-        // varientt.push(valuevarian);
-    
-    // varrryon.varientt.push(valuevarian);
-    // event.variant = [...event.variant,{ }]
-    // // TODO: event.variants.push(valuevarian);
-
-    // events.push(varientt);
 
 
 
