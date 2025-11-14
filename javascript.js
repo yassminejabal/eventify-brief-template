@@ -191,17 +191,19 @@
     // variants-list=> hadi hiyasrira  || variants=>hadi hiya alkbira
   }
   // varian="";
-
+  const divPrincipal = document.createElement("div");
   function ajouteEvenment(){
-    let title = document.getElementById("event-title").value.trim();
-    const divPrincipal = document.createElement("div");
-    divPrincipal.innerHTML = `${title},${eventDescription},${eventSeats},${eventPrice}`
     const distence = document.getElementById("events-pagination");
+    let title = document.getElementById("event-title").value.trim();
+    
+    divPrincipal.innerHTML = `${title},${eventDescription},${eventSeats},${eventPrice}`
+    
     distence.appendChild(divPrincipal);
   }
+    
   function affichage() {
     const tbody = document.querySelector(".table__body");
-    tbody.innerHTML ="";
+    tbody.innerHTML ="";o
     events.forEach((ev,index) => {
       tbody.innerHTML += `
         <tr class="table__row" data-event-id="">
@@ -269,16 +271,46 @@
   //     const found = archive.filter(ev => Number(ev.id) === Number(id))
   //     events.push(found[0]);
   //     archive = archive.filter(item => item.id != id);
+
   //     affichage();
   // }
-  // function restore(event,id) {
-  //          const carde = event.currentTarget.closest("table__row")
-  //          carde.remove();
-  //         archive.filter(evv=>Number(event.id) === Number(evv.id));
+  // function sehrch(){
+  //   
+  //   input.addEventListener("input",()=>{
+  //     for(ev of events){
+  //       const titl = ev.title;
+  //       if(titl.toLowerCase().includes(inputvalue.toLowerCase())){
           
+  //         ev.style.display="block";
+  //       }
+  //       else{
+  //          ev.style.display="none";
+           
+  //       }
 
-    
+        
+  //     }
+  //   })
+
   // }
+  // function sort(){
+  //   const sortevents = document.getElementById("sort-events");
+  //   sortevents.addEventListener("change",()=>{
+
+
+  //   })
+  // }
+  
+
+  //  function sehrch(){
+  //   const input = document.getElementById("search-events");
+  //   let inputvalue = input.value;
+  //   const tbody = document.querySelectorAll(".table__body");
+  //   //divPrincipal//distence
+  // input.addEventListener("input",()=>{
+    
+  //  })}
+
   // addVariantRow();
   // Save/load from localStorage
   // function loadData() {
@@ -320,8 +352,4 @@
 
 
 
-
-
-
-
-
+//featch (`https://duiuehiiewviuw`).then(then (res =>res.jeson()))
